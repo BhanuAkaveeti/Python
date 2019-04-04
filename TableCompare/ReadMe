@@ -1,0 +1,7 @@
+A simple test automation framework to compare two identical tables (share the same DDL) in SQL Server and report differences.
+
+This farmework can be used for upgrade testing or any other scenarios where two tables that share the same DDL needs to be compared.
+
+Also, the framework can be easily customized to compare any two tables, in any database.
+
+rowLimit can be used to control the number of rows to be fetched with every fetchmany() call.
