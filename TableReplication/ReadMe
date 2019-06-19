@@ -1,1 +1,18 @@
-Utility to replicate data from one table to other
+Utility to incrementally replicate data from one table to other (in any database)
+
+It is a common design in batch ETL to incrementally read the changes from OLTP tables and load to a Pre-Staging area AS-IS, 
+from where the data is further transformed and loaded into Staging and Warehouse/Marts.Depending on how the front end databases are 
+designed, there could be valid reasons to dump data AS-IS into a pre-staging area.
+
+This script is schema agnostic, so the developer need not know about the table structures. The script also maintains Last Run Timestamp 
+for each table, so only chnages since last run are pulled each time. 
+
+--> Apply the DDL (in ETL_Load - DDL.txt) in the target database before using the script
+--> Data in target table will be truncated and reloaded
+--> No need to create target table in target database. The script creates the table if it does not exist
+--> Script handles both history load and incremental load. If a new table is added to TableReplicationList.txt, the script pulls all the data, the first time it runs, and then pulls changes from then on
+--> Script can be easily enhanced to 'chunk' data into batches, if volumes are high
+
+ETL_Load - DDL.txt : The DDL to create ETL_Load table. Last Run Timestamp of each table is saved in this table
+TableReplicationList-Sample.txt : Sample file where a list of tables could be passed to the script
+Table Replication.py : Python script for replicating data between tables
