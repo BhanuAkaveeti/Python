@@ -1,0 +1,3 @@
+SourceDatabaseName|SourceSchemaName|SourceTableName|SourceDSNName|SourceTimestampColumn|TargetDatabaseName|TargetSchemaName|TargetTableName|TargetDSNName
+Claims|dbo|TestClaim|TestDSN|ModifiedOn|PRE_STG|dbo|TestClaim_STG|TestSTGDSN
+Claims|dbo|TestAgency|TestDSN|ModifiedOn|PRE_STG|dbo|TestAgency_STG|TestSTGDSN

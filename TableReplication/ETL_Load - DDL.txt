@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[ETL_Load](
+	[ProcessName] [varchar](50) NOT NULL,
+	[LastRunTstmp] [datetime2](7) NOT NULL,
+	[SourceRecordCount] [int] NULL,
+	[TargetRecordCount] [int] NULL,
+	[ModifiedBy] [varchar](max) NULL,
+	[ModifiedOn] [datetime2](7) NULL
+)
