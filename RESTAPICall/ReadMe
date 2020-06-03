@@ -1,1 +1,12 @@
+This program reads rows from a Source table (having columns FleetId and DriverId) and makes REST API calls by passing FleetId and DriverId as query parameters (one REST call
+for each row read from the source table), and inserts the JSON response into a Target table (one row for each REST API response). The JSON response is stored in a [nvarchar] datatype
+with length as (max). Below is the DDL for Target table.
 
+CREATE TABLE [dbo].[PRESTG_TELEMATICS_GPS_TRIP_SUMMARY](
+[FleetId] [int] NULL,
+[DriverId] [int] NULL,
+[JSONResponse] [nvarchar](max) NULL,
+[META_LastUpdateTimestamp] [datetime] NULL
+)
+
+To learn more about storing JSON documents in SQLServer, refer https://docs.microsoft.com/en-us/sql/relational-databases/json/store-json-documents-in-sql-tables?view=sql-server-ver15
