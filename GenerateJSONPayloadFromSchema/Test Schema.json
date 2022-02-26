@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "title": "Product",
+  "description": "A product from Acme's catalog",
+  "definitions":{
+  "type": "object",
+  "properties": {
+    "productId": {
+      "description": "The unique identifier for a product",
+      "type": "integer",
+	  "format": "int64"
+    },
+    "productName": {
+      "description": "Name of the product",
+      "type": "string",
+	  "maxLength":20,
+	  "minLength":10
+    },
+	"price": {
+      "type": "number",
+	  "format": "float",
+	  "enum": [0.1,0.2,0.3,0.4]
+    },
+	"Updatetime": {
+      "type": "string",
+	  "format": "date-time"
+    },
+	"Owner": {
+      "$ref": "#/definitions/owner"
+    },
+	"PurchaseDate": {
+      "type": "string",
+	  "format": "date"
+    },
+	"ISONumber": {
+      "type": "integer",
+	  "format": "int32",
+	  "minimum": 100,
+	  "maximum": 1000,
+	  "multipleOf": 10
+    },
+	"Quantity": {
+      "type": "integer",
+	  "format": "int32",
+	  "minimum": 1,
+	  "maximum": 10
+    },
+	"Tags": {
+      "description": "Tags for the product",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+	"IdTags": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+		"enum":[10,20,30,40,50]
+      },
+      "minItems": 3,
+	  "maxItems": 7,
+      "uniqueItems": true
+    },
+	"Categeory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+		"properties":{
+			"CategeoryId":{
+				"type":"integer"
+			},
+			"CategeoryName": {
+				"type": "string"
+			},
+			"CategeoryCode": {
+				"type": "integer",
+				"format": "int64"
+			}
+		}
+	  }
+	},
+	"Items": {
+		"type": "array",
+		"items": {
+			"$ref": "#/definitions/item"
+		}
+	}
+  },
+	"item":{
+		"properties": {
+			"ItemId":{
+				"type":"integer"
+			},
+			"ItemName": {
+				"type": "string"
+			}
+		}
+	},
+	"owner":{
+		"properties": {
+			"name":{
+				"$ref": "#/definitions/name"
+			},
+			"Id": {
+				"type": "number"
+			}
+		}
+	},
+	"name":{
+		"properties": {
+			"firstname":{
+				"type":"string"
+			},
+			"lastname": {
+				"type": "string"
+			},
+			"SSN": {
+				"type": "string",
+				"pattern": "^\\d{3}-\\d{2}-\\d{4}$"
+			},
+			"salutation": {
+				"$ref": "#/definitions/salutation"
+			}
+		}
+	},
+	"salutation":{
+		"properties": {
+			"prefix":{
+				"type":"string"
+			},
+			"suffix": {
+				"type": "string",
+				"enum": ["Jr", "Sr"]
+			}
+		}
+	}
+
+  }
+}
